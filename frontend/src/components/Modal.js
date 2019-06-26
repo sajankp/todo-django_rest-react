@@ -23,7 +23,7 @@ class CostomModal extends Component{
         if (e.target.type === "checkbox") {
             value = e.target.checked;
         }
-        const activeItem = { ...this.activeItem, [name]: value};
+        const activeItem = { ...this.state.activeItem, [name]: value};
         this.setState({ activeItem });
     };
     render(){
