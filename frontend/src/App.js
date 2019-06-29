@@ -99,7 +99,7 @@ class App extends Component {
         return;
       }
       axios
-        .post(`http://localhost:8000/api/todos/${item.id}/`, item)
+        .post(`http://localhost:8000/api/todos/`, item)
         .then(res => this.refreshList());
   };
 
