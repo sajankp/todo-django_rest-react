@@ -29,10 +29,7 @@ class App extends Component {
   };
 
   displayCompleted = (status) => {
-    if (status) {
-      return this.setState({ viewCompleted: true });
-    }
-    return this.setState({ viewCompleted: false });
+    return this.setState({ viewCompleted: status });
   };
 
   renderTabList = () => {
@@ -57,7 +54,7 @@ class App extends Component {
   renderItems = () => {
       const { viewCompleted } = this.state;
       const newItems = this.state.todolist.filter(
-        (item) => item.completed == viewCompleted
+        (item) => item.completed === viewCompleted
       );
       return newItems.map( item => (
         <li
@@ -90,9 +87,7 @@ class App extends Component {
 
   handleSubmit = item => {
     this.toggle();
-    //alert("save" + JSON.stringify(item));
       if (item.id) {
-        console.log("put",`http://localhost:8000/api/todos/${item.id}/`);
         axios
           .put(`http://localhost:8000/api/todos/${item.id}/`, item)
           .then(res => this.refreshList());
@@ -104,7 +99,6 @@ class App extends Component {
   };
 
   handleDelete = item => {
-    // alert("delete" + JSON.stringify(item));
     axios
       .delete(`http://localhost:8000/api/todos/${item.id}`)
       .then(res => this.refreshList());
